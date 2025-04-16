@@ -40,4 +40,51 @@ def rotate_img():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+def text_on_img():
+    img = cv2.imread('tree.jpg')
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    text = 'Hello, OpenCV!'
+    position = (50, 50)
+    font_scale = 1
+    color = (255, 0, 0)
+    thickness = 2
+    cv2.putText(img, text, position, font, font_scale, color, thickness)
+    cv2.imwrite('text_on_img.jpg',img)
+    cv2.imshow('Text_on_img',img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+def blur_img():
+    img = cv2.imread('tree.jpg')
+    blurred_img = cv2.GaussianBlur(img, (15, 15), 0)
+    cv2.imwrite('blurred_img.jpg',blurred_img)
+    cv2.imshow('Blurred_img',blurred_img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+def edge_detection():
+    img = cv2.imread('tree.jpg')
+    edges = cv2.Canny(img, 100, 200)
+    cv2.imwrite('edges.jpg',edges)
+    cv2.imshow('Edges',edges)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+def histogram():
+    img = cv2.imread('tree.jpg')
+    color = ('b', 'g', 'r')
+    for i, col in enumerate(color):
+        hist = cv2.calcHist([img], [i], None, [256], [0, 256])
+        plt.plot(hist, color=col)
+        plt.xlim([0, 256])
+    plt.title('Histogram')
+    plt.xlabel('Pixel Value')
+    plt.ylabel('Frequency')
+    plt.show()
+    cv2.imwrite('histogram.jpg',img)
+
+    cv2.imshow('Histogram',img)
+
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()     
 
